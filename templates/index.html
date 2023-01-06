@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <nav>
+        <h1>TREE/NO-TREE IDENTIFICATION</h1>
+    </nav>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-image: url("../static/uploads/back_img.jpg");
+    }
+
+    nav {
+        background-color: rgb(81, 178, 242);
+        height: 50px;
+        text-align: center;
+        font-size: x-large;
+        color: aliceblue;
+        box-shadow: 0px 4px 5px 0px rgb(153, 216, 240);
+    }
+
+    #f {
+        color: black;
+        /* border: solid; */
+        /* box-shadow: 0px 0px 2px 3px rgb(175, 234, 241); */
+        border-radius: 9px;
+        width: 460px;
+        margin-left: 100px;
+        margin-top: 100px;
+        height: 300px;
+        font-size: larger;
+        padding-inline: 5px;
+        backdrop-filter: blur(15px);
+        background-color: rgba(0, 0, 0, 0.03);
+    }
+
+    #button {
+        border-radius: 5px;
+        padding-inline: 3px;
+        height: 30px;
+        width: 70px;
+    }
+
+    #img {
+        border-radius: 5px;
+    }
+
+    #content {
+        padding: 7px;
+        font-size: larger;
+        color: black;
+    }
+
+    .i {
+        width: 250px;
+        height: 300px;
+        margin-top: 100px;
+        border-radius: 9px;
+        margin-left: 100px;
+    }
+
+    #c2 {
+        backdrop-filter: blur(15px);
+        background-color: rgba(0, 0, 0, 0.03);
+        text-align: center;
+        /* box-shadow: 0px 0px 2px 3px rgb(230, 228, 228); */
+        box-shadow: 0px 0px 2px 3px rgb(188, 233, 242);
+    }
+</style>
+
+<body>
+    <div style="display: flex;">
+        <div id="f">
+            <p id="content">This Machine Learning model takes 2D Lidar scanned image as input and uses Convolutional
+                Neural Network (CNN) to predict whether the given image is a Tree or Not. <br><br>The output will be 1
+                if it is a Tree and 0 if its not a Tree.</p>
+            <form method="post" action="/" style="margin-top: 50px; text-align: center;" enctype="multipart/form-data">
+                <label for="img" style="margin-right: 3px;"><b>Select image :</b></label>
+                <input type="file" name="file" class="form-control" autocomplete="off" required>
+                <input type="submit" value="Submit" id="button">
+            </form>
+        </div>
+        <div class="i" id="c1">
+            <img src="{{ url_for('display_image', filename=filename) }}" style="width: 250px; height:300px; border-radius: 9px;">
+        </div>
+        <div class="i" id="c2"> 
+            <!-- <h3 style="margin-top: 12px;">OUTPUT</h3> -->
+            <h5 style="margin-top: 30px;">PREDICTION</h5>
+            {% for mesg in get_flashed_messages() %}
+                <h4>{{ mesg }}<h4>
+                {% endfor %}
+            <!-- <pre style="margin-top: 30px;">{% for mesg in get_flashed_messages() %}
+                {{ mesg }}
+                {% endfor %}</pre> -->
+            <!-- <h5 style="margin-top: 50px;">PERCENTAGE</h5>
+            <pre style="margin-top: 30px;">%</pre> -->
+        </div>
+    </div>
+</body>
+</html>
